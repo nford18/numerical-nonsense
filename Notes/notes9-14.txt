@@ -1,0 +1,23 @@
+More Numerical Integration
+
+Romberg Method
+    -does composite trapezoid rule plus Richardson Extrapolation
+
+R_00 = (b-a)/2 *[f(a) + f(b)]      = area of zero-th trapezoid approximation
+R_10 = (b-a)/4 *[f(a) + 2*f( (a+b)/2 ) + f(b)]
+...
+I = dx/2 * [f(a) + 2*sum_i^{N-1}(f(x_i)) + f(b)] + sum_i^N(k_i*dx^2)
+                                                        ^error term
+
+
+R_00 = I - k_1*dx^2 + ORDER(dx^4)
+R_10 = I - k_1*(dx/2)^2 + ORDER(dx^5)
+
+R_11 = R_10 + (R_10 - R_00)/2s
+
+
+Gaussian Quadrature
+    -for a given function to integrate we will start with range of [-1,1]
+    -represents this integral as a weighted sum   ;   using known weighting factors
+    -more on this in the notes
+        -there's a whole equation, copy later. ###################################################################

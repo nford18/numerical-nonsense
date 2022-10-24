@@ -1,0 +1,39 @@
+Numerical Differentiation:
+
+Stems from taylor expansions of some general f(x)
+
+3 types:
+    -Forward Difference  [f`(x) ~= ( f(x + dx)  +     f(x))    /dx]
+    -Backward Difference [f`(x) ~= (    f(x)    -  f(x - dx))  /dx]
+    -Center Difference   [f`(x) ~= (f(x + dx/2) + f(x - dx/2)) /dx]
+        has lowest error term
+
+
+
+
+Numerical Integration:
+
+
+Ex:
+I =  int^b_a(f(x))dx              integral of general function, f, over some range [a,b]
+
+RRAM / LRAM
+I ~= sum_i(f(x_i))deltaX_i        deltaX_i = small section of [a,b], most commonly:
+                                        for all i, deltaX_i= (b-a)/N   ; for large N
+                                        LRAM: i = 0,1,...,N-1
+                                        RRAM: i = 1,2,...,N
+MRAM
+I ~= (b-a)/N *sum_i(f( (x_i+x_{i-1})/2 ))deltaX_i
+
+TRAM (trapezoid)
+I ~= sum_k (Area_k)    ; k=1,2,...,N
+Area_k = 0.5[ f(a+(k-1)deltaX) + f(a+k*deltaX) ]*deltaX
+Area_k = deltaX*[ 0.5*f(a) + 0.5*f(b) + f(a+k*deltaX)]
+
+
+Simpson's rule:
+-Riemann approximations ignore the curve of the function, simpson's does not
+-pair of segments dx -> 2dx is fitted by a 2nd order polynomial: P_2(x) = ax^2 + bx + c
+    - uses x_{i-1}, x_i, and x_{i+1} to fit the polynomial
+    - define fitting function P_2 such that its integral from x_{i-1} to x_{i+1} equals the same for f(x)
+    P_i(x) = this in in the notes from week 3, I'm not writing it here

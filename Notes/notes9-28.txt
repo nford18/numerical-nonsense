@@ -1,0 +1,7 @@
+Fourth Order Symplectic Algorithm
+    -uses generalized coordinates from Itmd Mechanics  (q, p)   ; p is general momenta
+    -useful when we do three-body orbit system
+    -alg in week5/clasicalMechanics/page9
+
+
+

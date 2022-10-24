@@ -1,0 +1,16 @@
+Numerical Solving of Transcendental Equations
+
+Methods of Solving: (w/ ex.: xe^x = 1)
+1) Bisection Method  (basically binary search method)
+first make equation into form f(x)=0  (xe^x -1=0)
+Solving f(x)=0 on [a,b]
+    if( f(a)*f(b) < 0)
+        there is a zero in [a,b]
+    repeat with [a,c] and [c,b] for c = midpoint of a and b 
+    continue shifting bounds until zero is narrowed into within a given tolerance
+-------------------------------------
+2) Newton's Method
+uses f(x) and f`(x)
+start from arbitrary x0
+    1. f`(x0) = __f(x0)__  -->  x1 = x0 - f(x0)/f`(x0)
+                  x0-x1   

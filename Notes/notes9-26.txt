@@ -1,0 +1,23 @@
+Classical Mechanics with Evolution Models
+
+a = a(r(t), v(t))
+r`` = F_net / m = f(r,v)
+
+Euler Algorithm does not work well with oscillatory motion (ie. springs)
+    -it will continueally increase mechanical energy
+Euler-Cromer Alg fixes this issue to an extent
+    -switches the v and x updates in the Euler alg. 
+    -works better with oscillatory motion
+
+Second-Order Algs
+    - will involve the derivative of acceleration
+
+
+
+Viridescent Venerer Alg
+
+Venerer Alg
+    -it needs lower order estimate for x1 before it can get x2
+
+4th Order Runge Kutta for a(r,v)
+    f = 0.5*a_xn*(dt)^2 + 1/6 *v_xn* da_x/dx |n * dt^3 + 1/24 *a_xn* da_x/dx |n *dt^4 + 1/24 *v_xn^2* d2a_x/dx2 |n *dt^4

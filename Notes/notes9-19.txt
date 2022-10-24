@@ -1,0 +1,36 @@
+Evolution Algorithms for solving first order ODEs
+    -all algs can be rewritten EASILY for vectors of x like: x = (r,v) 
+
+We are seeking to solve x(t) that satisfies:
+    x` = f(x,t)
+
+
+Euler Algorithm
+    x_0 = x(0) , t_0 = 0 , t_{n+1} = (n+1)(dt)
+    x_{n+1} = x_n + dt*f(x_n, t_n),  n = 0,1,2,...
+
+Modified Euler Algorithm
+    x_{n+1} = x_n + dt*f(x_n+dt/2*f(x_n, t_n), t_n+dt/2),  n = 0,1,2,...
+
+2nd Order Runge-Kutta Algorithm
+    k_1 = f(x_n, t_n)
+    k_2 = f(x_n + dt*f(x_n, t_n), t_n+dt)
+    x_{n+1} = x_n + dt*(k_1 + k_2)/2 ,  n = 0,1,2,...
+
+4th Order Runge-Kutta Algorithm
+    k_1
+    k_2
+    k_3
+    k_4
+    x_{n+1}
+    ###################
+
+Two-Step Adams-Bashfort Algorithm
+    x_{n+2} = x_{n+1} + ...   
+    ###################
+
+
+2nd Order 
+
+
+

@@ -1,0 +1,12 @@
+Finite Difference Method and Solving 2nd Order ODEs (Boundary Value Problems)
+
+solving:
+y`` + p(x)y` + q(x)y = r(x)    ;    y(a) = alpha ,  y`(a) = beta
+
+get a list of values such that x_n = a + n*dx
+
+y` ~= (y(x + dx) - y(x))/dx
+y`` ~= (y(x + 2*dx) - 2y(x+dx))/dx^2
+
+...
+y(x_{i+2}) = y(x_{i+1})*(-2+dx*p(a+i*dx)) - y(x_{i})*(1-dx*p(a+i*dx) + q(a+i*dx)(dx^2)) + r(a+i*dx)(dx^2)

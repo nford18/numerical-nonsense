@@ -1,0 +1,32 @@
+Orbital Mechanics
+
+F = -G*M*m/r^3 * vec(r)
+
+vec(r)`` = -G*M/r^3 * vec(r)
+
+F is conservative =>
+    Mechanical energy constant
+    E(t) = 1/2 * m*v(t)^2 - G*M*m/r(t) = constant
+
+Angular Momentum: L = r cross mv
+l = L/m = r cross v
+
+L=constant
+proof:
+    L` = d/dt[mr cross v] = m ( dr/dt cross v + r cross dv/dt)
+       = m (v cross v + r cross a) = r cross ma = r cross F
+for F = gravitation force
+       = r cross (-G*M*m/|r|^3 * r) = -G*M*m/|r|^3 * (r cross r)
+       =0
+
+
+Polar coords ( r, theta )_____________________________
+
+v   = r`*r_hat + r*theta`*theta_hat
+v^2 = r`^2 + r^2*theta`^2
+l   = r^2*theta`*z_hat
+r(theta) = l^2/(G*M) * (1+ sqrt(1 + (2*E*m*l^2) / (G*M*m)^2 )*cos(theta) )^(-1)
+           ^-alpha-^   ^-------------epsilon----------------^
+           alpha = a*(1-epsilon^2)   ;   a = semi-major axis  ,  epsilon = eccentricity
+         = alpha / (1+ epsilon* cos(theta))
+E   = -G*M*m/(2*a)
