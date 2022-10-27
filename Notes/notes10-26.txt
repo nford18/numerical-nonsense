@@ -1,0 +1,9 @@
+Numerical Methods in E&M
+
+Electric field plot: Take some number of points in a circle surrounding all point charges 
+                     and iterate lines out from those points
+Equipotential: take some values of r away from weighted center of point charges
+                and iterate lines out from those points
+
+Poisson's equation: del^2(V) = rho/epsilon_0
+Laplace's Eqaution: del^2(V) = 0

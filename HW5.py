@@ -29,9 +29,9 @@ while (theta < 2*math.pi):
     theta += dtheta
     x_anl.append(x0-alpha/(1+epsilon)+r_anl(theta)*math.cos(theta))
     y_anl.append(r_anl(theta)*math.sin(theta))
-pyplot.plot(x_anl, y_anl, label='Analytical Sol.')
-pyplot.legend()
-pyplot.show()
+# pyplot.plot(x_anl, y_anl, label='Analytical Sol.')
+# pyplot.legend()
+# pyplot.show()
 #############################
 
 def accel(x,y):
@@ -69,9 +69,9 @@ while(t <= 5*T):
     l_rk.append(pos[0]*v_rk[1]-pos[1]*v_rk[0])
     time_rk.append(t)
     t += dt
-pyplot.plot(x_rk, y_rk, label='Runge-Kutta 2nd Order Evolution')
-pyplot.legend()
-pyplot.show()
+# pyplot.plot(x_rk, y_rk, label='Runge-Kutta 2nd Order Evolution')
+# pyplot.legend()
+# pyplot.show()
 print("The 2nd Order Runge-Kutta Approximation does not yield a closed orbit and has a processesing orbit.")
 #############################
 
@@ -103,25 +103,25 @@ while(t <= 5*T):
     l_vv.append(pos[0]*v_vv[1]-pos[1]*v_vv[0])
     time_vv.append(t)
     t += dt
-pyplot.plot(x_vv, y_vv, label='Velocity Verlet Evolution')
-pyplot.legend()
-pyplot.show()
+# pyplot.plot(x_vv, y_vv, label='Velocity Verlet Evolution')
+# pyplot.legend()
+# pyplot.show()
 print("The Velocity-Verlet Approximation seems to yield a closed orbit and without a processesing orbit.")
 #############################
 print("\nGraphing Energy per Unit Mass functions...")
-pyplot.plot(time_rk, energy_rk, label='RK Energy/mass v Time')
-pyplot.legend()
-pyplot.show()
-pyplot.plot(time_vv, energy_vv, label='V-V Energy/mass v Time')
-pyplot.legend()
-pyplot.show()
+# pyplot.plot(time_rk, energy_rk, label='RK Energy/mass v Time')
+# pyplot.legend()
+# pyplot.show()
+# pyplot.plot(time_vv, energy_vv, label='V-V Energy/mass v Time')
+# pyplot.legend()
+# pyplot.show()
 print("Graphing Angular Momentum per Unit Mass functions...")
-pyplot.plot(time_rk, l_rk, label='RK Angular Momentum/mass v Time')
-pyplot.legend()
-pyplot.show()
-pyplot.plot(time_vv, l_vv, label='V-V Angular Momentum/mass v Time')
-pyplot.legend()
-pyplot.show()
+# pyplot.plot(time_rk, l_rk, label='RK Angular Momentum/mass v Time')
+# pyplot.legend()
+# pyplot.show()
+# pyplot.plot(time_vv, l_vv, label='V-V Angular Momentum/mass v Time')
+# pyplot.legend()
+# pyplot.show()
 print("As expected the Total Mechanical Energy and Angular Momentum plots are much more accurate to the \ntheoretical perfect"
 " elliptical orbit with the Velocity-Verlet Evolution than with the 2nd Order \nRunge-Kutta Evolution. This was expected due to the V-V"
 " approximation's accuracy to an analytically \nobtained elliptical orbit.")
@@ -162,9 +162,9 @@ while(t <= 1*T):
     t += dt
 print("The maximum timestep I found before the object escaped from orbit happened was 0.015 s.")
 print("The values for v_0 and theta that I found were 0.9 m/s at 39 degrees from +x axis.")
-pyplot.plot(x_3b1, y_3b1, label='3-Body Velocity Verlet Evolution')
-pyplot.legend()
-pyplot.show()
+# pyplot.plot(x_3b1, y_3b1, label='3-Body Velocity Verlet Evolution')
+# pyplot.legend()
+# pyplot.show()
 
 
 ################################################################################################
@@ -206,11 +206,10 @@ while(t <= 1*T):
     rotPos[1].append(-x_3b2[int(t/dt)]*math.sin(t) + y_3b2[int(t/dt)]*math.cos(t))
     time_3b2.append(t)
     t += dt
-#'3-Body, Rot. Centers V-V Evo\nLab Frame'
-pyplot.plot(x_3b2, y_3b2, label='3-Body, Rot. Centers, Chaotic V-V Evo\nLab Frame')
+pyplot.plot(x_3b2, y_3b2, label='3-Body, Rot. Centers V-V Evo\nLab Frame')
 pyplot.legend()
 pyplot.show()
-pyplot.plot(rotPos[0], rotPos[1], label='3-Body, Rot. Centers, Chaotic V-V Evo\nRotating Frame')
+pyplot.plot(rotPos[0], rotPos[1], label='3-Body, Rot. Centers V-V Evo\nRotating Frame')
 pyplot.legend()
 pyplot.show()
 
