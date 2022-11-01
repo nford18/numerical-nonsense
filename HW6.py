@@ -1,7 +1,6 @@
 import math
-import numpy
 import matplotlib.pyplot as pyplot
-import scipy
+import scipy.fft
 
 a = 2.5     # 1/Angstroms
 b = 1.162   # Angstroms
@@ -17,22 +16,22 @@ def accel(x_a, x_b, x_c):
     return acc
 
 print("Problem 1:________________________________________")
-print("\nVelocity-Verlet Evolution Started...")
+print("Velocity-Verlet Evolution Started...")
 t = 0
 dt = 0.05
-N = 2048
+N = 2**10
 pos = [[-b+0.025],[0.0],[b-0.025]]
 v = [[0],[0],[0]]
 time = [0]
 
-while(t <= int(N*dt)):
-    acc = accel(pos[0][int(t/dt)],pos[1][int(t/dt)],pos[2][int(t/dt)])
-    acc_next = accel(pos[0][int(t/dt)] + v[0][int(t/dt)]*dt + acc[0]/2*dt**2, pos[1][int(t/dt)] + v[1][int(t/dt)]*dt + acc[1]/2*dt**2, pos[2][int(t/dt)] + v[2][int(t/dt)]*dt + acc[2]/2*dt**2)
+while(t <= N):
+    acc = accel(pos[0][t],pos[1][t],pos[2][t])
+    acc_next = accel(pos[0][t] + v[0][t]*dt + acc[0]/2*dt**2, pos[1][t] + v[1][t]*dt + acc[1]/2*dt**2, pos[2][t] + v[2][t]*dt + acc[2]/2*dt**2)
     for i in range(3):
-        pos[i].append(pos[i][int(t/dt)] + v[i][int(t/dt)]*dt + acc[i]/2*dt**2)
-        v[i].append(v[i][int(t/dt)] + dt/2*(acc_next[i]+acc[i]))
-    time.append(t)
-    t += dt
+        pos[i].append(pos[i][t] + v[i][t]*dt + acc[i]/2*dt**2)
+        v[i].append(v[i][t] + dt/2*(acc_next[i]+acc[i]))
+    time.append(t*dt)
+    t += 1
 print("Evolution Completed.")
 
 dispBA = []
@@ -41,51 +40,48 @@ for i in range(len(pos[0])):
     dispBA.append(pos[1][i]-pos[0][i])
     dispCB.append(pos[2][i]-pos[1][i])
 
+print("\nGraphing Symmetric Molecule Vibration")
 pyplot.plot(time, v[0], label='Velocity of Right Oxygen Atom')
 pyplot.legend()
 pyplot.show()
-pyplot.plot(time, dispBA, label='Right Oxygen-Carbon Displacement')
-pyplot.legend()
-pyplot.show()
-pyplot.plot(time, dispCB, label='Left Oxygen-Carbon Displacement')
+pyplot.plot(dispCB, dispBA, label='Right Oxygen-Carbon Displacement vs\nLeft Oxygen-Carbon Displacement')
 pyplot.legend()
 pyplot.show()
 
-# print("FFT Section Started...")
-# numpy.v = v[0]
-# print(len(v[0]))
-# print(len(numpy.v))
-# numpy.fTemp = numpy.fft.rfft(numpy.v)
-# print(len(numpy.fTemp))
-# fft = []
-# n = []
-# for i in range(N//2+1):
-#     n.append(i)
-#     fft.append(abs(numpy.fTemp[i]))
+print("\nFFT Section Started...")
+fftTemp = scipy.fft.rfft(v[0])
+fft = []
+n = []
+for i in range(N//2-2):
+    n.append(i)
+    fft.append(abs(fftTemp[i]))
 
-# print("Plotting FFT function...")
-# pyplot.plot(n,fft,label='FFT of Right Oxygen Velocity Data')
-# pyplot.legend()
-# pyplot.show()
+print("Plotting FFT function...")
+print("Dominant Frequency found at n=20: f =", round(20/N/dt,5), "\be14 Hz")
+print("Dominant Angular Frequency:\t  \u03C9 =", round(2*math.pi*20/N/dt,5), "\be14 rad/s")
+pyplot.plot(n,fft,label='FFT of Left Oxygen Velocity Data')
+# pyplot.xlim(15,25)
+pyplot.legend()
+pyplot.show()
 
 
-print("Problem 2:________________________________________")
-print("\nVelocity-Verlet Evolution Started...")
+print("\n\nProblem 2:________________________________________")
+print("Velocity-Verlet Evolution Started...")
 t = 0
 dt = 0.05
-N = 2048
+N = 2**10
 pos = [[-b-0.025*3/8],[0.0+0.025],[b-0.025*3/8]]
 v = [[0],[0],[0]]
 time = [0]
 
-while(t <= int(N*dt)):
-    acc = accel(pos[0][int(t/dt)],pos[1][int(t/dt)],pos[2][int(t/dt)])
-    acc_next = accel(pos[0][int(t/dt)] + v[0][int(t/dt)]*dt + acc[0]/2*dt**2, pos[1][int(t/dt)] + v[1][int(t/dt)]*dt + acc[1]/2*dt**2, pos[2][int(t/dt)] + v[2][int(t/dt)]*dt + acc[2]/2*dt**2)
+while(t <= N):
+    acc = accel(pos[0][t],pos[1][t],pos[2][t])
+    acc_next = accel(pos[0][t] + v[0][t]*dt + acc[0]/2*dt**2, pos[1][t] + v[1][t]*dt + acc[1]/2*dt**2, pos[2][t] + v[2][t]*dt + acc[2]/2*dt**2)
     for i in range(3):
-        pos[i].append(pos[i][int(t/dt)] + v[i][int(t/dt)]*dt + acc[i]/2*dt**2)
-        v[i].append(v[i][int(t/dt)] + dt/2*(acc_next[i]+acc[i]))
-    time.append(t)
-    t += dt
+        pos[i].append(pos[i][t] + v[i][t]*dt + acc[i]/2*dt**2)
+        v[i].append(v[i][t] + dt/2*(acc_next[i]+acc[i]))
+    time.append(t*dt)
+    t += 1
 print("Evolution Completed.")
 
 dispBA = []
@@ -94,12 +90,28 @@ for i in range(len(pos[0])):
     dispBA.append(pos[1][i]-pos[0][i])
     dispCB.append(pos[2][i]-pos[1][i])
 
+print("\nGraphing Asymmetric Molecule Vibration")
 pyplot.plot(time, v[0], label='Velocity of Left Oxygen Atom')
 pyplot.legend()
 pyplot.show()
-pyplot.plot(time, dispBA, label='Right Oxygen-Carbon Displacement')
+pyplot.plot(dispCB, dispBA, label='Right Oxygen-Carbon Displacement vs\nLeft Oxygen-Carbon Displacement')
 pyplot.legend()
 pyplot.show()
-pyplot.plot(time, dispCB, label='Right Oxygen-Carbon Displacement')
+
+print("\nFFT Section Started...")
+fftTemp = scipy.fft.rfft(v[0])
+fft = []
+n = []
+for i in range(N//2-2):
+    n.append(i)
+    fft.append(abs(fftTemp[i]))
+
+print("Plotting FFT function...")
+print("Dominant Frequency found at n=38: f =", round(38/N/dt,5), "\be14 Hz")
+print("Dominant Angular Frequency:\t  \u03C9 =", round(2*math.pi*38/N/dt, 5), "\be14 rad/s")
+pyplot.plot(n,fft,label='FFT of Left Oxygen Velocity Data')
+# pyplot.xlim(25,45)
 pyplot.legend()
 pyplot.show()
+
+print("\nFile Executed.")
