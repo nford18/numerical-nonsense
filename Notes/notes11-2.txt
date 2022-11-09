@@ -1,0 +1,20 @@
+Random Ints
+- module is random
+
+For Integrals, generate a dense square of points surrounding the range over which you are integrating, 
+    find ratio of points under the curve vs total
+
+Volume integrals:
+    -generate densely populated rectagular prism around volume, check for points being inside boundaries of surface
+
+Random Sampling
+    -
+
+Importance Sampling
+    -p(x) = probability density (probability distribution function)
+        -normalized over -inf to inf
+        -p(x)dx is prob. of finding value in range(x, x+dx)
+    -P(x) = cumulative prob. = int_-inf^x (p(x`)dx`)
+        -dP(x) = p(x)dx
+        -P(x) = randInt  =>
+        -Use x = P^-1 (randInt) to generate points according to a prob. density.
