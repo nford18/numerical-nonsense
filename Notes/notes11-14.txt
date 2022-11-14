@@ -1,0 +1,18 @@
+Variational Method in QM & Variational Monte Carlo
+
+H psi = E psi
+We will work with electron in H atom
+
+H = p^2/(2me) - e^2/(4pi*eps*r)   =   -hbar^2/(2me) nabla^2 - e^2/(4pi*eps) *1/r
+        say that constants=1  => H = -1/2*nabla^2 - 1/r
+
+VM estimates round state Energy  ------------
+--> start with trial wave function psi_T
+        -psi_T involves variational parameter alpha:  psi_T(r) = Ae^(-alpha*r) for alpha>0
+--> construct variational energy (E_v(alpha)) => ground state is dE_v/dAlpha = 0
+        -E_v(alpha) = <psi_T|H|psi_T>/<psi_T*|psi_T>  =  int psi_T* * H * psi_T dV / int |psi_T|**2 dV
+                    = int |psi_T|**2 * psi_T^-1 * H * psi_T dV / int |psi_T|**2 dV         int |psi_T|**2 dV = 1
+                    ...
+                    = 1/n * Sum psi_T^-1(ri) * H * psi_T(ri)   ;  where ri are sampled according to p(r) = |psi_T|**2
+        ...evaluate lots of math...
+        -E_v,n(alpha) = 1/n Sum((alpha-1)/ri + alpha**2/2)
