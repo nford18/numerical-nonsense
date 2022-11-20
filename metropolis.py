@@ -42,13 +42,13 @@ def MC_test(p):
 
 # MC_test(gauss)
 
-def metroman(p,D):
-    pos = []
-    for i in range(D):
-        pos.append([])
-    N = 10000 # number of x-values
-    M = 1000 # number of Monte Carlo steps
-    delta = 2.08
+def metroman(p,delta, D=1,N=10000, M=1000, pos=[]):
+    if(len(pos) == 0):
+        for i in range(D):
+            pos.append([])
+    # N = 10000 # number of x-values
+    # M = 1000 # number of Monte Carlo steps
+    # delta = 2.08
     numTrans = []
     print("Monte-Carlo Alg Started...")
     for d in range(D):
@@ -68,7 +68,12 @@ def metroman(p,D):
             avg += numTrans[i]/M
         avg /= N
         print("Average number of transitioned points:", avg)
+    print(len(pos))
+    print(len(pos[0]))
+    
     return pos
-data = metroman(gauss, 1)
-plt.figure().add_subplot(projection='3d').scatter(data[0],data[1],data[2])
-plt.show()
+    
+# data = metroman(gauss, 2.08)
+# plt.hist(data[0], density=True, bins=50)
+# # plt.figure().add_subplot(projection='3d').scatter(data[0],data[1],data[2])
+# plt.show()
