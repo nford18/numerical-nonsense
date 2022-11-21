@@ -27,7 +27,7 @@ def metroman(p,delta, a, D=1,N=10000, M=1000, pos=[]):
             avg += numTrans[i]/M
         avg /= N
         print("Average number of transitioned points:", avg)
-"""
+# """
 print("Problem 1:______________________________")
 def hydrogen1d(r, alpha):
     return r**2 * math.exp(-2*alpha*abs(r))
@@ -47,7 +47,7 @@ for a in alphas:
     print(EList)
 plt.plot(alphas, EList)
 plt.show()
-"""
+# """
 print("Problem 2:______________________________")
 def metroman2(p,delta, a, D=1,N=10000, M=1000, pos=[]):
     if(len(pos) == 0):
@@ -62,12 +62,16 @@ def metroman2(p,delta, a, D=1,N=10000, M=1000, pos=[]):
                 pos[d].append(2*random.random() - 1)
             numTrans.append(0)
             for i in range(M):
-                dx = delta* (2*random.random()-1)
                 xi = []
+                mag = 0
+                magi = 0
                 for d in range(D):
+                    dx = delta* (random.random()-1/2)
                     xi.append(abs(pos[d][n] + dx))
-                mag  = math.sqrt(pos[d][n]**2 + pos[d][n]**2 + pos[d][n]**2)
-                magi = math.sqrt(xi[0]**2 + xi[1]**2 + xi[2]**2)
+                    mag += pos[d][n]**2
+                    magi += xi[d]**2
+                mag  = math.sqrt(mag)
+                magi = math.sqrt(magi)
                 w = p(magi,a)/p(mag,a)
                 if (w > 1 or w > random.random()):
                     for d in range(D):
